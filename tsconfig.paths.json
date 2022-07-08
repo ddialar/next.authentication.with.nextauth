@@ -7,6 +7,9 @@
       ],
       "@viewComponents": [
         "src/view/components"
+      ],
+      "@viewLayouts": [
+        "src/view/layouts"
       ]
     }
   }

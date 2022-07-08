@@ -8,5 +8,8 @@ export default NextAuth({
       clientId: GOOGLE_CLIENT_ID!,
       clientSecret: GOOGLE_CLIENT_SECRET!
     })
-  ]
+  ],
+  pages: {
+    signIn: '/signin'
+  }
 })

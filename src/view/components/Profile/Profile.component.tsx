@@ -35,8 +35,8 @@ export const Profile: FC<Props> = ({ name, email, image }) => {
           hover:bg-cyan-300
           flex
         `}
-        onClick={() => signOut()}
-        // onClick={() => signOut({ callbackUrl: 'http://localhost:3000/api/auth/signin' })}
+        // onClick={() => signOut()}
+        onClick={() => signOut({ callbackUrl: '/signin' })}
       >
         <LogoutIcon className="pr-1 w-6 h-6" /> Logout
       </button>
