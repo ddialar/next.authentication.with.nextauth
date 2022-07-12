@@ -9,6 +9,7 @@ export const mapFromOrmToUser = (rawUser: any): User | null => {
       id: rawUser.id,
       name: rawUser.name || 'not defined',
       username: rawUser.username,
+      role: rawUser.role || 'user',
       locale: rawUser.locale || DEFAULT_USER_LOCALE,
       picture: rawUser.picture || DEFAULT_USER_PICTURE_URL,
       isEnabled: Boolean(rawUser.isEnabled)

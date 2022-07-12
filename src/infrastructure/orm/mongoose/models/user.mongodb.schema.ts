@@ -8,6 +8,7 @@ export const UserSchema = new Schema<UserMongo>({
   _id: { type: String },
   name: { type: String, required: true },
   username: { type: String, required: true, immutable: true },
+  role: { type: String, required: true, enum: ['user', 'manager', 'admin'] },
   locale: { type: String, required: true },
   picture: { type: String },
   isEnabled: { type: Boolean, default: true }

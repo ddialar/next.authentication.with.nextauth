@@ -17,29 +17,19 @@ export const Profile: FC<Props> = ({ name, email, image }) => {
           src={image || '/img/unknown-user.png'}
           className='rounded-full'
           alt="User picture"
-          width={72}
-          height={72}
+          width={60}
+          height={60}
         />
         <ul className='ml-3'>
-          <li className='text-lg font-bold'>{name || 'Unknown'}</li>
+          <li className='text-sm font-bold'>{name || 'Unknown'}</li>
           <li className='text-sm font-light'>{email || 'Unknown'}</li>
+          <li className='text-sm font-light'>
+            <button className='flex' onClick={() => signOut({ callbackUrl: '/signin' })}>
+              <LogoutIcon className="pr-1 w-5 h-5" /> Logout
+            </button>
+          </li>
         </ul>
       </div>
-      <button
-        className={`
-          mt-3
-          py-2
-          px-3
-          transition
-          duration-100
-          hover:bg-cyan-300
-          flex
-        `}
-        // onClick={() => signOut()}
-        onClick={() => signOut({ callbackUrl: '/signin' })}
-      >
-        <LogoutIcon className="pr-1 w-6 h-6" /> Logout
-      </button>
     </>
   )
 }

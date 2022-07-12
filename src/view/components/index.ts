@@ -1,2 +1,6 @@
+export * from './Content'
+export * from './Header'
 export * from './icons'
 export * from './Profile'
+export * from './Protected'
+export * from './TodoCard'

@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto'
 import { userRepositories } from '@repositories'
-import { GetUserByUsernameBadRequestError, SaveNewUserBadRequestError } from '@errors'
+import { GetUserByUsernameBadRequestError, SaveNewUserBadRequestError, UserNotFoundError } from '@errors'
 import type { BasicUserData, User } from '@types'
 
 // ###########################################################
@@ -16,6 +16,23 @@ export const getByUsername = async (username: string): Promise<User | null> => {
   }
 }
 
+export const getDataForToken = async (username: string): Promise<Pick<User, 'role' | 'locale'>> => {
+  try {
+    console.log('[INFO ] - Starting signin process...')
+    const persistedUser = await getByUsername(username)
+
+    if (persistedUser) {
+      const { role, locale } = persistedUser
+      return { role, locale }
+    } else {
+      throw new UserNotFoundError()
+    }
+  } catch (error) {
+    console.log('[ERROR] - Getting user role', (<Error>error).message)
+    throw error
+  }
+}
+
 // ###########################################################
 // #####               WRITING OPERATIONS                #####
 // ###########################################################
@@ -25,6 +42,7 @@ export const saveNewUser = async (newUserData: BasicUserData): Promise<User | nu
     const newUser: User = {
       ...newUserData,
       id: randomUUID(),
+      role: 'user',
       isEnabled: true
     }
     return await userRepositories.saveNewUser(newUser)

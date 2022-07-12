@@ -31,6 +31,9 @@
       ],
       "@viewLayouts": [
         "src/view/layouts"
+      ],
+      "@viewPages": [
+        "src/view/pages"
       ]
     }
   }

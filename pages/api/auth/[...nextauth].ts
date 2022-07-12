@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '@config'
-import { authControllers } from '@controllers'
+import { authControllers, userControllers } from '@controllers'
 
 export default NextAuth({
   providers: [
@@ -24,10 +24,15 @@ export default NextAuth({
     async redirect ({ url, baseUrl }) {
       return baseUrl
     },
-    async session ({ session, user, token }) {
+    async session ({ session, token }) {
+      session.user.role = token.role
+      session.user.locale = token.locale
       return session
     },
-    async jwt ({ token, user, account, profile, isNewUser }) {
+    async jwt ({ token }) {
+      const { role, locale } = await userControllers.getDataForToken(token.email!)
+      token.role = role
+      token.locale = locale
       return token
     }
   }
