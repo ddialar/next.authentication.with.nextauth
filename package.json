@@ -37,7 +37,7 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.36",
     "@types/http-status-codes": "^1.2.0",
-    "@types/jest": "^28.1.1",
+    "@types/jest": "^28.1.4",
     "@types/mongoose": "^5.11.97",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
@@ -54,7 +54,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.0",
     "husky": "^8.0.1",
-    "jest": "^28.1.1",
+    "jest": "^28.1.2",
     "lint-staged": "^13.0.2",
     "lockfile-lint": "^4.7.5",
     "postcss": "^8.4.14",

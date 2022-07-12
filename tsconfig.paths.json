@@ -5,6 +5,27 @@
       "@config": [
         "src/config"
       ],
+      "@types": [
+        "src/types"
+      ],
+      "@controllers": [
+        "src/controllers"
+      ],
+      "@errors": [
+        "src/errors"
+      ],
+      "@repositories": [
+        "src/infrastructure/repositories"
+      ],
+      "@mappers": [
+        "src/infrastructure/mappers"
+      ],
+      "@orm": [
+        "src/infrastructure/orm"
+      ],
+      "@ormMongoose": [
+        "src/infrastructure/orm/mongoose"
+      ],
       "@viewComponents": [
         "src/view/components"
       ],
