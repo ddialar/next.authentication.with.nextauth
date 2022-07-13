@@ -27,5 +27,15 @@ export const TodoCard: FC<Props> = ({ todo, callback }) => (
         </Protected>
         : <div className='flex mt-3 font-bold '><CheckIcon className='pr-1 w-6 h-6 text-green-400' /> Task done</div>
     }
+    {/* {
+      todo.status !== 'done'
+        ? <button
+          className='w-36 mt-3 p-1 rounded-md bg-green-200'
+          onClick={() => callback(todo.id)}
+        >
+            Mark as done
+        </button>
+        : <div className='flex mt-3 font-bold '><CheckIcon className='pr-1 w-6 h-6 text-green-400' /> Task done</div>
+    } */}
   </div>
 )

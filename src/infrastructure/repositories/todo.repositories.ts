@@ -13,9 +13,10 @@ export const getAll = async (): Promise<Todo[]> => {
     return mappedTodo ? [...previous, mappedTodo] : [...previous]
   }, [])
 }
+
 // ###########################################################
 // #####               WRITING OPERATIONS                #####
 // ###########################################################
 
-// export const saveNewUser = async (newUserData: User): Promise<User | null> =>
-//   mongooseOrm.users.saveNewUser(mapFromUserToOrm(newUserData)).then(user => user)
+export const markAsDone = async (id: string): Promise<Todo> =>
+  mongooseOrm.todos.markAsDone(id)

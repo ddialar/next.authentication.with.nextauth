@@ -14,3 +14,14 @@ export const getAll = async (req: NextApiRequest, res: NextApiResponse<Todo[]>) 
 
   return res.status(OK).json(persistedTodos)
 }
+
+// ###########################################################
+// #####              UPDATING OPERATIONS                #####
+// ###########################################################
+
+export const markAsDone = async (req: NextApiRequest, res: NextApiResponse<Todo>) => {
+  const { id } = req.query
+  const updatedTodo = await todoControllers.markAsDone(id as string)
+
+  return res.status(OK).json(updatedTodo)
+}

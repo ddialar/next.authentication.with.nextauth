@@ -13,5 +13,5 @@ export const getAll = async (): Promise<Todo[]> =>
 // #####               WRITING OPERATIONS                #####
 // ###########################################################
 
-// export const saveNewUser = async (newUserData: UserMongo) =>
-//   (await dbConnect()).models.User.create(newUserData)
+export const markAsDone = async (id: string) =>
+  (await dbConnect()).models.Todo.findByIdAndUpdate(id, { status: 'done' }, { new: true })

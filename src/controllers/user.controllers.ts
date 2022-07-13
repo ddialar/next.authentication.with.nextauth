@@ -34,7 +34,7 @@ export const getDataForToken = async (username: string): Promise<Pick<User, 'rol
 }
 
 // ###########################################################
-// #####               WRITING OPERATIONS                #####
+// #####              UPDATING OPERATIONS                #####
 // ###########################################################
 
 export const saveNewUser = async (newUserData: BasicUserData): Promise<User | null> => {

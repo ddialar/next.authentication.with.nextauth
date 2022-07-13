@@ -23,6 +23,9 @@
       "@mappers": [
         "src/infrastructure/mappers"
       ],
+      "@middlewares": [
+        "src/infrastructure/middlewares"
+      ],
       "@orm": [
         "src/infrastructure/orm"
       ],

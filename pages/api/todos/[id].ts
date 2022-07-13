@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { todoHandlers } from '@handlers'
-import { ensureAuthenticated } from '@middlewares'
+import { handleHttpError, ensureAuthenticated } from '@middlewares'
 import { MethodNotAllowedError } from '@errors'
-import type { Role } from '@types'
+import type { Role, Todo } from '@types'
+
 interface ActionElements {
   handler: (req: NextApiRequest, res: NextApiResponse) => Promise<unknown>
   roles: Role[]
@@ -11,13 +12,13 @@ interface ActionElements {
 type Actions = Record<string, ActionElements>
 
 const actions: Actions = {
-  GET: {
-    handler: todoHandlers.getAll,
-    roles: ['user', 'manager', 'admin']
+  PATCH: {
+    handler: todoHandlers.markAsDone,
+    roles: ['admin']
   }
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default handleHttpError<Todo>(async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req
   if (method && method in actions) {
     const { handler, roles } = actions[method as keyof typeof actions]
@@ -25,4 +26,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return await handler(req, res)
   }
   throw new MethodNotAllowedError()
-}
+})

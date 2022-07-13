@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { useSession } from 'next-auth/react'
 import { todoServices } from '@viewServices'
@@ -6,23 +7,19 @@ import { Content, TodoCard } from '@viewComponents'
 import type { Todo } from '@types'
 
 const PageContent = () => {
-  // const [todos, setTodos] = useState<Todo[]>([])
-  const { data: todos } = useSWR<Todo[]>('/api/todos', todoServices.getAll)
+  const { data: retrievedTodos } = useSWR<Todo[]>('/api/todos', todoServices.getAll)
+  const [todos, setTodos] = useState<Todo[]>([])
 
-  // useEffect(() => {
-  //   const requestData = async () => {
-  //     const { data: todos } = useSWR<Todo[]>('/api/todos', await todoServices.getAll())
-  //     setTodos(todos || [])
-  //   }
-
-  //   requestData()
-  // }, [])
+  useEffect(() => {
+    setTodos(retrievedTodos || [])
+  }, [retrievedTodos])
 
   const markAsDone = async (id: string) => {
-    // const todosCopy = [...todos].map(todo => todo.id === id ? { ...todo, status: 'done' } : todo)
-    // setTodos(todosCopy)
-    console.log(`Setting as done to task ${id}`)
-    // await todoController.markAsDone(id)
+    const updatedTodo = await todoServices.markAsDone(id)
+    if (updatedTodo) {
+      const newTodos = todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo)
+      setTodos(newTodos)
+    }
   }
 
   return (
