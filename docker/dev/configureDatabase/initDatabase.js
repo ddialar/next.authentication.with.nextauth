@@ -1,4 +1,5 @@
 load('/docker-entrypoint-initdb.d/usersData.js')
+load('/docker-entrypoint-initdb.d/todosData.js')
 
 const DATABASE_NAME = 'nextauth_talk_dev';
 
@@ -21,13 +22,18 @@ const apiDatabases = [
       {
         collection: 'users',
         data: usersData
+      },
+      {
+        collection: 'todos',
+        data: todosData
       }
     ]
   }
 ]
 
 const collections = {
-  users: (db, userData) => db.users.insert(userData)
+  users: (db, userData) => db.users.insert(userData),
+  todos: (db, todoData) => db.todos.insert(todoData)
 }
 
 const createDatabaseUsers = (db, dbName, users) => {

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import Bluebird from 'bluebird'
-import { UserSchema } from '../models'
+import { TodoSchema, UserSchema } from '../models'
 import { MONGO_URI } from '@config'
 
 mongoose.Promise = Bluebird
@@ -31,5 +31,6 @@ export const dbConnect = async () => {
 
   cached.connection = mongoose.createConnection(MONGO_URI, options)
   cached.connection.model('User', UserSchema)
+  cached.connection.model('Todo', TodoSchema)
   return cached.connection
 }
